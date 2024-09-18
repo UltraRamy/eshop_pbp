@@ -1,3 +1,35 @@
 <p>{{ aplikasi }}<p>
 <p>{{ nama }}<p>
 <p>{{ kelas }}<p>
+ {% block content %}
+ <p>{{ aplikasi }}<p>
+ <p>{{ nama }}</p>
+ <p>{{ kelas }}</p>
+{% if not entries %}
+<p>Belum ada data.</p>
+{% else %}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+
+  {% comment %} Berikut cara memperlihatkan data di bawah baris ini 
+  {% endcomment %} 
+  {% for entry in entries %}
+  <tr>
+    <td>{{entry.name}}</td>
+    <td>{{entry.description}}</td>
+    <td>{{entry.price}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_entry' %}">
+  <button>Add New Entry</button>
+</a>
+{% endblock content %}
