@@ -1,6 +1,3 @@
-<p>{{ aplikasi }}<p>
-<p>{{ nama }}<p>
-<p>{{ kelas }}<p>
  {% block content %}
  <p>{{ aplikasi }}<p>
  <p>{{ nama }}</p>
@@ -32,4 +29,8 @@
 <a href="{% url 'main:create_entry' %}">
   <button>Add New Entry</button>
 </a>
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}
