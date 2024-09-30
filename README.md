@@ -292,3 +292,41 @@ Untuk last login saya menambahkan <h5>Sesi terakhir login: {{ last_login }}</h5>
 
 
 Untuk pertanyaan-pertanyaan di README.md saya mencari referensi dengan berselancar internet.
+
+
+
+
+,
+Urutan prioritas dari tinggi ke rendah: inline styles > IDs > classes, attribute selectors, pseudoclasses > elements, pseudoelements
+
+
+
+Meningkatkan pengalaman pengguna. 
+Contoh yang menerapkan: https://scele.cs.ui.ac.id/
+Contoh yang tidak menerapkan: https://dequeuniversity.com/library/responsive/1-non-responsive
+
+
+
+Padding adalah Jarak antara border dengan konten. Border adalah garis pembatas box. Margin adalah area di luar box.
+Cara implementasinya menggunakan property. Contohnya:
+div {
+  border: 10px solid green;
+  padding: 20px;
+  margin: 30px;
+}
+
+
+
+Flex box adalah modul layout yang fleksibel. Grid llayout adalah modul layout yang berbasis grid. Keduanya berguna untuk memudahkan web desain tanpa memerlukan floats dan positioning 
+
+
+
+Membuat fungsi delete yang menggunakan object.delete() pada views.pw dan melakukan routing pada urls.py
+Membuat fungsi edit yang mirip dengan create pada views.py dan melakukan routing pada urls.py
+Menambahkan <script src="https://cdn.tailwindcss.com"> pada main.html
+Menambahkan desain pada login, register, create dengan menggunakan css pada html masing - masing
+Membuat card dengan menambahkan card.html dan card_info.html
+Membuat png file pada static/image dan menambahkannya pada main.html
+Membuat 2 button edit dan delete dengan href halaman masing - masing pada card
+Membuat navbar.html pada templates
+Menjawab README.md dengan W3Schools sebagai sumber utama jawaban
