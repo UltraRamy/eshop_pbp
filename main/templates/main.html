@@ -91,8 +91,9 @@
     })
     .then(() => {
         // Reset the form and close the modal if the submission is successful
-        document.getElementById("EntryForm").reset(); 
+        document.getElementById("EntryForm").reset();
         document.querySelector("[data-modal-toggle='crudModal']").click();
+	hideModal();
     })
     .catch(error => {
         // Display an error message to the user

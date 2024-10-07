@@ -330,3 +330,33 @@ Membuat png file pada static/image dan menambahkannya pada main.html
 Membuat 2 button edit dan delete dengan href halaman masing - masing pada card
 Membuat navbar.html pada templates
 Menjawab README.md dengan W3Schools sebagai sumber utama jawaban
+
+
+
+Manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web adalah membuat aplikasi web menjadi interaktif. JavaScript memungkinkan kita untuk menambahkan elemen - elemen interaktif.
+Fungsi dari penggunaan await ketika kita menggunakan fetch() adalah memastikan kebenaran hasil fetch(). Dengan await, eksekusi kode akan berhenti sejenak sampai fetch mengembalikan hasilnya. Jika kita tidak menggunakan await, ada kemungkinan hasil fetch tidak lengkap. 
+Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST agar dikecualikan dari verifikasi CSRF dan bisa dijalankan.
+Pembersihan data input pengguna tidak dilakukan di frontend saja karena masih terdapat risiko untuk di bypass, sedangkan backend lebih dapat dikendalikan sehingga untuk memastikan keduanya, pembersihan data input di backend harus dilakukan.
+Untuk AJAX, saya menambahkan kode di bawah pada views.py
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
+@csrf_exempt
+@require_POST
+def add_mood_entry_ajax(request):
+    name = strip_tags(request.POST.get("name")) # strip HTML tags!
+    description = strip_tags(request.POST.get("descrption"))
+    price = request.POST.get("price")
+    user = request.user
+    new_mood = Product(
+        name=name, description=description,
+        price=price,
+        user=user
+    )
+    new_mood.save()
+    return HttpResponse(b"CREATED", status=201)
+Lalu, routing ke urls.py dengan kode di bawah
+from main.views import add_mood_entry_ajax
+path('create-ajax', add_mood_entry_ajax, name='add_mood_entry_ajax'),
+Membersihkan forms.py menggunakan strip_tags()
+Menambahkan script dan modal pada main.html yang dapat dilihat pada main.html (terlalu Panjang jika diletakkan di sini)
