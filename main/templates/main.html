@@ -78,16 +78,31 @@
 <script>
   function addEntry() {
     fetch("{% url 'main:add_mood_entry_ajax' %}", {
-      method: "POST",
-      body: new FormData(document.querySelector('#EntryForm')),
+        method: "POST",
+        body: new FormData(document.querySelector('#EntryForm')),
     })
-    .then(response => refreshEntries())
+    .then(response => {
+        // Check if the response is OK (status in the range 200-299)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // If successful, refresh the entries
+        return refreshEntries();
+    })
+    .then(() => {
+        // Reset the form and close the modal if the submission is successful
+        document.getElementById("EntryForm").reset(); 
+        document.querySelector("[data-modal-toggle='crudModal']").click();
+    })
+    .catch(error => {
+        // Display an error message to the user
+        alert(`Error: ${error.message}`);
+        console.error('There has been a problem with your fetch operation:', error);
+    });
 
-    document.getElementById("EntryForm").reset(); 
-    document.querySelector("[data-modal-toggle='crudModal']").click();
+    return false; // Prevent default form submission
+}
 
-    return false;
-  }
   async function getEntries(){
       return fetch("{% url 'main:show_json' %}").then((res) => res.json())
   }
