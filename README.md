@@ -337,6 +337,7 @@ Manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web adalah membua
 Fungsi dari penggunaan await ketika kita menggunakan fetch() adalah memastikan kebenaran hasil fetch(). Dengan await, eksekusi kode akan berhenti sejenak sampai fetch mengembalikan hasilnya. Jika kita tidak menggunakan await, ada kemungkinan hasil fetch tidak lengkap. 
 Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST agar dikecualikan dari verifikasi CSRF dan bisa dijalankan.
 Pembersihan data input pengguna tidak dilakukan di frontend saja karena masih terdapat risiko untuk di bypass, sedangkan backend lebih dapat dikendalikan sehingga untuk memastikan keduanya, pembersihan data input di backend harus dilakukan.
+
 Untuk AJAX, saya menambahkan kode di bawah pada views.py
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -355,8 +356,11 @@ def add_mood_entry_ajax(request):
     )
     new_mood.save()
     return HttpResponse(b"CREATED", status=201)
+
 Lalu, routing ke urls.py dengan kode di bawah
+
 from main.views import add_mood_entry_ajax
 path('create-ajax', add_mood_entry_ajax, name='add_mood_entry_ajax'),
 Membersihkan forms.py menggunakan strip_tags()
+
 Menambahkan script dan modal pada main.html yang dapat dilihat pada main.html (terlalu Panjang jika diletakkan di sini)
